@@ -1,0 +1,6 @@
+{
+  "name": "FerroSense: Intelligent Industrial Machine Failure Prediction",
+  "description": "Predictive maintenance command center for smart factories featuring real-time machine telemetry, AI4I-calibrated failure prediction, explainable feature attribution, and maintenance scheduling.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

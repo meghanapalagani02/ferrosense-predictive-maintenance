@@ -1,0 +1,149 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    background-color: #F4EEE4;
+    color: #231A3B;
+    scroll-behavior: smooth;
+  }
+
+  html.dark {
+    background-color: #231A3B;
+    color: #F4EEE4;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-dot-grid {
+  background-image: radial-gradient(rgba(35, 26, 59, 0.14) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+html.dark .hero-dot-grid {
+  background-image: radial-gradient(rgba(230, 255, 61, 0.12) 1px, transparent 1px);
+}
+
+.plum-dot-grid {
+  background-image: radial-gradient(rgba(230, 255, 61, 0.14) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Interactive button tactile press feedback */
+button:not(:disabled) {
+  transition-property: color, background-color, border-color, transform, box-shadow, opacity;
+  transition-duration: 180ms;
+}
+
+button:not(:disabled):active {
+  transform: scale(0.985);
+}
+
+@keyframes criticalBorderPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(179, 38, 94, 0.35);
+    border-color: #B3265E;
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(179, 38, 94, 0.16);
+    border-color: #D93877;
+  }
+}
+
+.critical-card-pulse {
+  animation: criticalBorderPulse 2.2s ease-in-out infinite;
+}
+
+/* Custom accessible range slider styling */
+input[type="range"].ferro-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  background: #E4DACB;
+  outline: none;
+}
+
+html.dark input[type="range"].ferro-slider {
+  background: #3E3163;
+}
+
+input[type="range"].ferro-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #8B79C2;
+  border: 2px solid #FBF8F2;
+  box-shadow: 0 1px 4px rgba(35, 26, 59, 0.25);
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+input[type="range"].ferro-slider::-webkit-slider-thumb:hover {
+  background: #5E4B9A;
+  transform: scale(1.08);
+}
+
+input[type="range"].ferro-slider:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid #E6FF3D;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print-optimized styling for Executive Summary PDF export */
+@media print {
+  header,
+  .no-print,
+  [aria-label="AI Maintenance Advisor"],
+  [aria-label="Open AI Maintenance Advisor"] {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #FFFFFF !important;
+    color: #111111 !important;
+  }
+
+  .print-surface {
+    background: #FFFFFF !important;
+    color: #111111 !important;
+    border-color: #D4D4D8 !important;
+    box-shadow: none !important;
+  }
+
+  @page {
+    margin: 14mm;
+    size: A4;
+  }
+}
